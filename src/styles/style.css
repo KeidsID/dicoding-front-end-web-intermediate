@@ -10,5 +10,7 @@ body {
 }
 
 main {
-  margin: 40px 8vw;
+  width: 90%;
+  max-width: 800px;
+  margin: 32px auto;
 }
