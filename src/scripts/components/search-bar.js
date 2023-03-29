@@ -4,7 +4,7 @@
 class SearchBar extends HTMLElement {
   static name = 'search-bar';
 
-  #buttonClickListener;
+  #onTapEvent;
   #shadowDOM;
 
   /**
@@ -118,7 +118,7 @@ class SearchBar extends HTMLElement {
 
     this.container.querySelector(`#${this.id}Button`).addEventListener(
         'click',
-        this.#buttonClickListener,
+        this.#onTapEvent,
     );
   }
 
@@ -127,8 +127,8 @@ class SearchBar extends HTMLElement {
    *
    * @param {function(): void} event
    */
-  set buttonClickListener(event) {
-    this.#buttonClickListener = event;
+  set onTap(event) {
+    this.#onTapEvent = event;
 
     this.render();
   }

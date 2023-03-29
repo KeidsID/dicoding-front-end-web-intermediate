@@ -61,7 +61,19 @@ class MovieList extends HTMLElement {
     divContainer.setAttribute('id', 'container');
 
     this.#shadowDOM.appendChild(divContainer);
+    /**
+     * @type {HTMLDivElement}
+     */
     this.container = this.#shadowDOM.querySelector('#container');
+  }
+
+  /**
+   * @param {object[]} movies
+   */
+  set movies(movies) {
+    this.#movies = movies;
+
+    this.renderItems();
   }
 
   /**
@@ -93,17 +105,17 @@ class MovieList extends HTMLElement {
    */
   renderError(msg) {
     this.container.innerHTML = '';
-
     this.container.innerHTML += `<h2 class="placeholder">${msg}</h2>`;
   }
 
   /**
-   * @param {object[]} movies
+   * Render loading ui.
    */
-  set movies(movies) {
-    this.#movies = movies;
-
-    this.renderItems();
+  renderLoading() {
+    this.container.innerHTML = '';
+    this.container.innerHTML = `
+      <ring-loading-indicator></ring-loading-indicator>
+    `;
   }
 }
 

@@ -75,6 +75,15 @@ class MovieItem extends HTMLElement {
   }
 
   /**
+   * @param {Movie} movie
+   */
+  set movie(movie) {
+    this.#movie = movie;
+
+    this.render();
+  }
+
+  /**
    */
   connectedCallback() {
     this.render();
@@ -94,15 +103,6 @@ class MovieItem extends HTMLElement {
         <p>${this.#movie.releaseDate}</p>
       </div>
     `;
-  }
-
-  /**
-   * @param {Movie} movie
-   */
-  set movie(movie) {
-    this.#movie = movie;
-
-    this.render();
   }
 }
 

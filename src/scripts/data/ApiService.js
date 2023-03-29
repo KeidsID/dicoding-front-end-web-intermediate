@@ -35,11 +35,49 @@ class ApiService {
   static #apiKey = `api_key=3ca1197f928011a97a8c43a04bac8379`;
 
   /**
+   * Get a list of movies in theatres.
+   *
    * @return {Promise<Movie[]>}
    */
   static async getNowPlayingMovies() {
     const response = await fetch(
         `${this.#baseUrl}/movie/now_playing?${this.#apiKey}`);
+
+    /**
+     * @type {MovieListResponse}
+     */
+    const resJson = await response.json();
+
+    if (resJson.error) {
+      throw new Error(resJson.error);
+    }
+
+    const movies = resJson.results;
+
+    if (!movies.length) {
+      throw new Error('Not Found');
+    }
+
+    return movies.map((e) => {
+      return {
+        posterPath: e.poster_path,
+        releaseDate: e.release_date,
+        title: e.title,
+      };
+    });
+  }
+
+  /**
+   * Search for movies.
+   *
+   * @param {string} query
+   *
+   * @return {Promise<Movie[]>}
+   */
+  static async searchMovies(query) {
+    const parsedQuery = encodeURI(query);
+    const response = await fetch(
+        `${this.#baseUrl}/search/movie?${this.#apiKey}&query=${parsedQuery}`);
 
     /**
      * @type {MovieListResponse}
