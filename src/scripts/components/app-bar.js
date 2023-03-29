@@ -30,7 +30,7 @@ class AppBar extends HTMLElement {
         width: 100%;
         background-color: #2e4f4f;
         color: #cbe4de;
-        box-shadow: 0 4px 8px 0 #cbe4de33;
+        box-shadow: 0 4px 8px 0 #cbe4de20;
       }
     </style>`;
 
@@ -44,7 +44,7 @@ class AppBar extends HTMLElement {
   /**
    */
   connectedCallback() {
-    this.title = this.getAttribute('title');
+    this.title = this.getAttribute('title') ?? 'App Bar';
 
     this.render();
   }

@@ -16,13 +16,14 @@ class SearchBar extends HTMLElement {
     this.#shadowDOM.innerHTML = `<style>
       #container {
         max-width: 800px;
-        box-shadow: 0 4px 8px 0 #cbe4de33;
+        box-shadow: 0 4px 8px 0 #cbe4de20;
         padding: 16px;
+        margin: auto;
         border-radius: 5px;
         display: flex;
         position: sticky;
         top: 10px;
-        background-color: #364141;
+        background-color: #2c3333;
       }
       
       #container > input {
